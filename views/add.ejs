@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="nav">
+    <div class="container nav-top">
+        <div class="row nav-content">
+            <div>
+                <a id="nav" href="/" style="text-decoration: none;">Hình nền điện thoại đẹp cho dế yêu của bạn.</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------->
+<!--form nhap-->
+<form method="post" action="/addImg" enctype="application/x-www-form-urlencoded"
+      style="text-align: right;padding: 5px;margin: 10px">
+
+    <input name="content" placeholder="Insert image:">
+
+    <input name="date" placeholder="Insert date:">
+
+    <input name="linkImg" placeholder="Insert link image:">
+
+    <button type="submit" class="btn btn-sm btn-outline-secondary mb-1">Add</button>
+
+</form>
+
+            <div class="pt-5" style="background-color: #eee">
+                <div class="container">
+                    <div class="row flex-wrap justify-content-between">
+                        <% for(var i = 0;i < data.length;i++){ %>
+                            <div class="h-auto mb-5" style="width: 30%">
+                                <div class="w-full">
+                                    <img class="bd-placeholder-img card-img-top" src=<%= data[i].linkImg %> style="object-fit:
+                                         cover;
+                                         width="100%" height="500">
+                                </div>
+                                <p class="card-text"><%= data[i].content %></p>
+                                <p class="card-text">Date: <%= data[i].date %></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <form style="display: inline; padding: 5px" method="get" action="/view">
+                                            <input name="id" value="<%= data[i]._id %>" hidden>
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
+                                        </form>
+                                        <form style="display: inline; padding: 5px" method="get" action="/update">
+                                            <input name="id" value="<%= data[i]._id %>" hidden>
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                                        </form>
+                                        <form style="display: inline; padding: 5px" method="get" action="/deleteIMG">
+                                            <input name="id" value="<%= data[i]._id %>" hidden>
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+<!------------------------------>
+<footer>
+    <div class="d-flex">
+        <h6 id="text1" style="color: #6c6c6c">POWERED BY</h6>
+        <h6 id="text2" class="ml-1" style="color: #57a8ff">HÌNH NỀN ĐIỆN THOẠI ĐẸP</h6>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
